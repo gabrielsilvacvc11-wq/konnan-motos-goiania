@@ -44,7 +44,7 @@
   <section>
     <div class="kicker">Motos e bikes elétricas</div>
     <h1>Potência silenciosa na cidade.</h1>
-    <p style="color:#a1a1aa;max-width:520px">Catálogo em Goiânia. Foto real de cada modelo. Preços com + R$ 3.000.</p>
+    <p style="color:#a1a1aa;max-width:520px">Catálogo em Goiânia. Foto real de cada modelo. Chame no WhatsApp.</p>
   </section>
   <section id="catalogo">
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:48px">Catálogo completo</h2>
@@ -59,17 +59,17 @@
   <script>
     const WA="https://wa.me/5562999945175?text=";
     const products=[
-      {name:"City Cesta Vermelha",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Vermelho · Prata",old:2990,price:5990,img:"img/city-vermelha.jpg"},
-      {name:"City Cesta Cinza",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Cinza · Bege",old:2990,price:5990,img:"img/city-cinza.jpg"},
-      {name:"Sport Branca",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Branco · Vermelho",old:4990.9,price:7990.9,img:"img/sport-branca.jpg"},
-      {name:"Rider Pro 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",old:4999.9,price:7999.9,img:"img/rider-pro.jpg",featured:true},
-      {name:"Avant 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",old:3999.9,price:6999.9,img:"img/avant.jpg",featured:true},
-      {name:"Box Preta",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Preto · Branco · banco vinho",old:5990,price:8990,img:"img/box-preta.jpg"},
-      {name:"Sport Amarela",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto · Amarelo",old:4990.9,price:7990.9,img:"img/sport-amarela.jpg"},
-      {name:"Box Verde",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Verde petróleo",old:5990,price:8990,img:"img/box-verde.jpg"},
-      {name:"Fat 2TD",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",old:2890.91,price:5890.91,img:"img/fat-2td.jpg"},
-      {name:"Cappuccino",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Rosa · Bege",old:5990,price:8990,img:"img/cappuccino.jpg"},
-      {name:"City Cesta Azul",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Azul · Prata",old:2990,price:5990,img:"img/city-azul.jpg"}
+      {name:"City Cesta Vermelha",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Vermelho · Prata",price:5990,img:"img/city-vermelha.jpg"},
+      {name:"City Cesta Cinza",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Cinza · Bege",price:5990,img:"img/city-cinza.jpg"},
+      {name:"Sport Branca",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Branco · Vermelho",price:7990,img:"img/sport-branca.jpg"},
+      {name:"Rider Pro 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:7999,img:"img/rider-pro.jpg",featured:true},
+      {name:"Avant 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:6999,img:"img/avant.jpg",featured:true},
+      {name:"Box Preta",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Preto · Branco · banco vinho",price:8990,img:"img/box-preta.jpg"},
+      {name:"Sport Amarela",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto · Amarelo",price:7990,img:"img/sport-amarela.jpg"},
+      {name:"Box Verde",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Verde petróleo",price:8990,img:"img/box-verde.jpg"},
+      {name:"Fat 2TD",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",price:5890,img:"img/fat-2td.jpg"},
+      {name:"Cappuccino",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Rosa · Bege",price:8990,img:"img/cappuccino.jpg"},
+      {name:"City Cesta Azul",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Azul · Prata",price:5990,img:"img/city-azul.jpg"}
     ];
     const brl=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
     const cats=["Todos",...new Set(products.map(p=>p.cat))];
@@ -92,7 +92,7 @@
             <h3>${p.name}</h3>
             <div class="meta">${p.bat}<br>${p.colors}</div>
             <div class="price-row">
-              <div><div class="old">${brl(p.old)}</div><div class="price">${brl(p.price)}</div></div>
+              <div class="price">${brl(p.price)}</div>
               <a class="wa" target="_blank" href="${WA}${encodeURIComponent("Olá! Tenho interesse na "+p.name+" por "+brl(p.price))}">Quero esta</a>
             </div>
           </div>
