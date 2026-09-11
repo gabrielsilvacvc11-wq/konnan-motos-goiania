@@ -30,6 +30,7 @@
     .meta{color:var(--muted);font-size:13px;margin-bottom:14px;min-height:36px}
     .price-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
     .price{font-size:22px;font-weight:700}
+    .freight{color:var(--muted);font-size:11px;margin-top:2px}
     .wa{background:#25D366;color:#06240f;text-decoration:none;border-radius:12px;padding:10px 12px;font-weight:700;white-space:nowrap}
     footer{border-top:1px solid var(--line);padding:36px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--muted)}
     .float-wa{position:fixed;right:22px;bottom:22px;background:#25D366;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;text-decoration:none;font-size:28px}
@@ -43,15 +44,16 @@
   <section>
     <div class="kicker">Motos e bikes elétricas</div>
     <h1>Potência silenciosa na cidade.</h1>
-    <p style="color:#a1a1aa;max-width:520px">Catálogo em Goiânia. Foto real de cada modelo. Chame no WhatsApp.</p>
+    <p style="color:#a1a1aa;max-width:560px">Catálogo em Goiânia. Foto real de cada modelo. Frete calculado conforme a sua cidade.</p>
   </section>
   <section id="catalogo">
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:48px">Catálogo completo</h2>
+    <p style="color:#a1a1aa;margin:8px 0 18px">Foto de cada item. Cores sob consulta. Frete calculado de acordo com a cidade de onde você está comprando.</p>
     <div class="filters" id="filters"></div>
     <div class="grid" id="grid"></div>
   </section>
   <footer>
-    <div><div class="logo">KONNAN <span>GO</span></div><p>Goiânia · (62) 99994-5175</p></div>
+    <div><div class="logo">KONNAN <span>GO</span></div><p>Goiânia · (62) 99994-5175</p><p style="margin-top:6px;font-size:13px">Frete calculado conforme a sua cidade.</p></div>
     <a class="btn" href="https://wa.me/5562999945175" target="_blank">Chamar no WhatsApp</a>
   </footer>
   <a class="float-wa" href="https://wa.me/5562999945175" target="_blank">💬</a>
@@ -94,7 +96,7 @@
             <h3>${p.name}</h3>
             <div class="meta">${p.bat}<br>${p.colors}</div>
             <div class="price-row">
-              <div class="price">${label}</div>
+              <div><div class="price">${label}</div><div class="freight">Frete conforme sua cidade</div></div>
               <a class="wa" target="_blank" href="${WA}${encodeURIComponent(msg)}">Quero esta</a>
             </div>
           </div>
