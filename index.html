@@ -29,7 +29,6 @@
     .body h3{font-size:20px;margin:6px 0 8px}
     .meta{color:var(--muted);font-size:13px;margin-bottom:14px;min-height:36px}
     .price-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
-    .old{color:#71717a;text-decoration:line-through;font-size:13px}
     .price{font-size:22px;font-weight:700}
     .wa{background:#25D366;color:#06240f;text-decoration:none;border-radius:12px;padding:10px 12px;font-weight:700;white-space:nowrap}
     footer{border-top:1px solid var(--line);padding:36px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--muted)}
@@ -59,17 +58,17 @@
   <script>
     const WA="https://wa.me/5562999945175?text=";
     const products=[
-      {name:"City Cesta Vermelha",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Vermelho · Prata",price:5990,img:"img/city-vermelha.jpg"},
-      {name:"City Cesta Cinza",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Cinza · Bege",price:5990,img:"img/city-cinza.jpg"},
-      {name:"Sport Branca",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Branco · Vermelho",price:7990,img:"img/sport-branca.jpg"},
-      {name:"Rider Pro 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:7999,img:"img/rider-pro.jpg",featured:true},
-      {name:"Avant 750W",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:6999,img:"img/avant.jpg",featured:true},
-      {name:"Box Preta",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Preto · Branco · banco vinho",price:8990,img:"img/box-preta.jpg"},
-      {name:"Sport Amarela",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto · Amarelo",price:7990,img:"img/sport-amarela.jpg"},
-      {name:"Box Verde",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Verde petróleo",price:8990,img:"img/box-verde.jpg"},
-      {name:"Fat 2TD",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",price:5890,img:"img/fat-2td.jpg"},
-      {name:"Cappuccino",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Rosa · Bege",price:8990,img:"img/cappuccino.jpg"},
-      {name:"City Cesta Azul",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Azul · Prata",price:5990,img:"img/city-azul.jpg"}
+      {name:"T1 1000W Vermelho",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Vermelho · Prata",price:6990.91,img:"img/city-vermelha.jpg"},
+      {name:"Tank 800W Cinza",brand:"New E-Bike",cat:"Scooter",power:"800W",bat:"Lítio",colors:"Cinza · Bege",price:7990.91,img:"img/city-cinza.jpg"},
+      {name:"Shark 1000W Vermelho",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Branco · Vermelho",price:8750,img:"img/sport-branca.jpg"},
+      {name:"Ride Pro 750W",brand:"Konnan",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:6999.9,img:"img/rider-pro.jpg",featured:true},
+      {name:"Avant 750W",brand:"Konnan",cat:"Ebike",power:"750W",bat:"Lítio",colors:"Preto",price:5999.9,img:"img/avant.jpg",featured:true},
+      {name:"H9 1000W",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto · Prata · banco marrom",price:7999.01,img:"img/box-preta.jpg"},
+      {name:"Shark 1000W Amarelo",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto · Amarelo",price:8750,img:"img/sport-amarela.jpg"},
+      {name:"B3 1000W Verde",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Verde petróleo",price:7994,img:"img/box-verde.jpg"},
+      {name:"2T",brand:"Citycoco",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",price:null,img:"img/fat-2td.jpg"},
+      {name:"Cappuccino 1000W",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Rosa · Bege",price:7990,img:"img/cappuccino.jpg"},
+      {name:"T1 1000W Azul",brand:"New E-Bike",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Azul camaleão",price:6990.91,img:"img/city-azul.jpg"}
     ];
     const brl=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
     const cats=["Todos",...new Set(products.map(p=>p.cat))];
@@ -84,19 +83,23 @@
     });
     function render(){
       const list=products.filter(p=>current==="Todos"||p.cat===current);
-      document.getElementById("grid").innerHTML=list.map(p=>`
+      document.getElementById("grid").innerHTML=list.map(p=>{
+        const label=p.price==null?"Sob consulta":brl(p.price);
+        const msg=p.price==null?("Olá! Tenho interesse na "+p.name):("Olá! Tenho interesse na "+p.name+" por "+brl(p.price));
+        return `
         <article class="card">
           <div class="thumb">${p.featured?'<span class="badge">DESTAQUE</span>':''}<img src="${p.img}" alt="${p.name}"></div>
           <div class="body">
-            <div class="cat">${p.cat} · ${p.power}</div>
+            <div class="cat">${p.brand} · ${p.power}</div>
             <h3>${p.name}</h3>
             <div class="meta">${p.bat}<br>${p.colors}</div>
             <div class="price-row">
-              <div class="price">${brl(p.price)}</div>
-              <a class="wa" target="_blank" href="${WA}${encodeURIComponent("Olá! Tenho interesse na "+p.name+" por "+brl(p.price))}">Quero esta</a>
+              <div class="price">${label}</div>
+              <a class="wa" target="_blank" href="${WA}${encodeURIComponent(msg)}">Quero esta</a>
             </div>
           </div>
-        </article>`).join("");
+        </article>`;
+      }).join("");
     }
     render();
   </script>
