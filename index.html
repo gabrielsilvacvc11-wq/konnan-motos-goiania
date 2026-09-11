@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konnan Motos Elétricas | Goiânia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#070708;--card:#111114;--card2:#18181c;--orange:#ff6a00;--muted:#a1a1aa;--line:#2a2a30}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Outfit,system-ui,sans-serif;background:var(--bg);color:#f4f4f5}
+    header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 6vw;background:rgba(7,7,8,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .logo{font-family:"Bebas Neue",sans-serif;font-size:32px;letter-spacing:2px}
+    .logo span{color:var(--orange)}
+    .btn{background:linear-gradient(135deg,#ff6a00,#ff3d00);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600}
+    section{padding:28px 6vw 70px}
+    h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(44px,8vw,88px);line-height:.9;margin:10px 0 16px}
+    .kicker{color:var(--orange);letter-spacing:3px;text-transform:uppercase;font-size:13px;font-weight:600}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 24px}
+    .filters button{background:var(--card);color:var(--muted);border:1px solid var(--line);padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:500}
+    .filters button.on{background:var(--orange);color:#fff;border-color:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+    .card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;overflow:hidden}
+    .thumb{height:220px;background:#f3f3f5;display:flex;align-items:center;justify-content:center;position:relative}
+    .thumb img{width:100%;height:100%;object-fit:contain;padding:8px}
+    .badge{position:absolute;top:12px;left:12px;background:rgba(255,106,0,.15);color:#ff8a2a;border:1px solid rgba(255,106,0,.35);font-size:11px;font-weight:700;padding:4px 8px;border-radius:999px}
+    .body{padding:16px 18px 20px}
+    .cat{color:var(--orange);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+    .body h3{font-size:20px;margin:6px 0 8px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:14px;min-height:36px}
+    .price-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+    .old{color:#71717a;text-decoration:line-through;font-size:13px}
+    .price{font-size:22px;font-weight:700}
+    .wa{background:#25D366;color:#06240f;text-decoration:none;border-radius:12px;padding:10px 12px;font-weight:700;white-space:nowrap}
+    footer{border-top:1px solid var(--line);padding:36px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--muted)}
+    .float-wa{position:fixed;right:22px;bottom:22px;background:#25D366;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;text-decoration:none;font-size:28px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">KONNAN <span>GO</span></div>
+    <a class="btn" href="https://wa.me/5562999945175" target="_blank">WhatsApp</a>
+  </header>
+  <section>
+    <div class="kicker">Motos e bikes elétricas</div>
+    <h1>Potência silenciosa na cidade.</h1>
+    <p style="color:#a1a1aa;max-width:520px">Catálogo Konnan em Goiânia. Foto de cada modelo. Preços com + R$ 3.000.</p>
+  </section>
+  <section id="catalogo">
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:48px">Catálogo completo</h2>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <footer>
+    <div><div class="logo">KONNAN <span>GO</span></div><p>Goiânia · (62) 99994-5175</p></div>
+    <a class="btn" href="https://wa.me/5562999945175" target="_blank">Chamar no WhatsApp</a>
+  </footer>
+  <a class="float-wa" href="https://wa.me/5562999945175" target="_blank">💬</a>
+  <script>
+    const WA="https://wa.me/5562999945175?text=";
+    const products=[
+      {name:"Black Fish 500W",cat:"Ebike",power:"500W",bat:"Chumbo 48V",colors:"Preto · Preto/Bege",old:2990,price:5990,img:"img/black-fish.jpg"},
+      {name:"Advantage 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Várias cores Konnan",old:3999.9,price:6999.9,img:"img/advantage.jpg",featured:true},
+      {name:"Winner 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto/Cinza · Preto/Vermelho",old:3999.9,price:6999.9,img:"img/winner.jpg"},
+      {name:"Avant 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto · Preto/Laranja",old:3999.9,price:6999.9,img:"img/avant.jpg"},
+      {name:"Fast Trail 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto/Branco · Azul · Verde · Laranja",old:3999.9,price:6999.9,img:"img/fast-trail.jpg"},
+      {name:"Connection 500W",cat:"Ebike",power:"500W",bat:"Lítio 48V",colors:"Preto/Cinza · Preto/Laranja",old:3999.9,price:6999.9,img:"img/connection.jpg"},
+      {name:"Explorer II 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto/Laranja",old:3999.9,price:6999.9,img:"img/explorer-ii.jpg"},
+      {name:"Ride Pro 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto/Vermelho · Laranja · Cinza · Branco",old:4999.9,price:7999.9,img:"img/ride-pro.jpg",featured:true},
+      {name:"Voyager 750W",cat:"Ebike",power:"750W",bat:"Lítio 48V",colors:"Preto/Vermelho · Verde · Laranja · Branco",old:4999.9,price:7999.9,img:"img/voyager.jpg"},
+      {name:"Scooter T1 1000W",cat:"Scooter",power:"1000W",bat:"Lítio 48V/64V",colors:"Vermelho · Verde · Azul · Preto · Prata",old:4990.91,price:7990.91,img:"img/scooter-t1.jpg"},
+      {name:"Cappuccino 1000W",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Verde/Bege · Bege",old:5990,price:8990,img:"img/cappuccino.jpg"},
+      {name:"Tank 800W",cat:"Scooter",power:"800W",bat:"Grafeno",colors:"Cinza · Preto",old:5990.91,price:8990.91,img:"img/tank.jpg"},
+      {name:"Scooter B3 1000W",cat:"Scooter",power:"1000W",bat:"Grafeno 60V",colors:"Preto · Verde",old:5994,price:8994,img:"img/scooter-b3.jpg"},
+      {name:"Scooter H9 1000W",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Preto/Prata",old:5999.01,price:8999.01,img:"img/scooter-h9.jpg"},
+      {name:"Shark 1000W",cat:"Scooter",power:"1000W",bat:"Lítio",colors:"Vermelho · Amarelo",old:6750,price:9750,img:"img/shark.jpg"},
+      {name:"Scooter T8 500W",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",old:2890.91,price:5890.91,img:"img/scooter-t8.jpg"},
+      {name:"Scooter T9 500W",cat:"Scooter",power:"500W",bat:"Lítio",colors:"Preto",old:2990,price:5990,img:"img/scooter-t9.jpg"},
+      {name:"Scooter T10 1500W",cat:"Scooter",power:"1500W",bat:"Lítio",colors:"Preto",old:6990.91,price:9990.91,img:"img/scooter-t10.jpg"}
+    ];
+    const brl=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+    const cats=["Todos",...new Set(products.map(p=>p.cat))];
+    let current="Todos";
+    const filters=document.getElementById("filters");
+    cats.forEach(c=>{
+      const b=document.createElement("button");
+      b.textContent=c;
+      if(c===current)b.classList.add("on");
+      b.onclick=()=>{current=c;document.querySelectorAll("#filters button").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();};
+      filters.appendChild(b);
+    });
+    function render(){
+      const list=products.filter(p=>current==="Todos"||p.cat===current);
+      document.getElementById("grid").innerHTML=list.map(p=>`
+        <article class="card">
+          <div class="thumb">${p.featured?'<span class="badge">DESTAQUE</span>':''}<img src="${p.img}" alt="${p.name}"></div>
+          <div class="body">
+            <div class="cat">${p.cat} · ${p.power}</div>
+            <h3>${p.name}</h3>
+            <div class="meta">${p.bat}<br>${p.colors}</div>
+            <div class="price-row">
+              <div><div class="old">${brl(p.old)}</div><div class="price">${brl(p.price)}</div></div>
+              <a class="wa" target="_blank" href="${WA}${encodeURIComponent("Olá! Tenho interesse na "+p.name+" por "+brl(p.price))}">Quero esta</a>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+    render();
+  </script>
+</body>
+</html>
